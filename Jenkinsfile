@@ -20,7 +20,7 @@ pipeline {
             steps {
                 sshagent(['deploy-key']) {
                     sh """
-                    ssh ec2-user@10.0.138.94 '
+                    ssh new.pem ec2-user@10.0.138.94 '
                       sudo rm -rf /usr/share/nginx/html/*
                       sudo cp -r * /usr/share/nginx/html/
                     '
