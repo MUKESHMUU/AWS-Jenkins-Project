@@ -25,15 +25,15 @@ pipeline {
                 sshagent(['deploy-key']) {
                     sh '''
                     # Create temp directory on target
-                    ssh -o StrictHostKeyChecking=no ubuntu@<TARGET_PRIVATE_IP> \
+                    ssh -o StrictHostKeyChecking=no ubuntu@172.31.38.210 \
                     "mkdir -p /tmp/webapp"
 
                     # Copy project files
                     scp -o StrictHostKeyChecking=no -r ./* \
-                    ubuntu@<TARGET_PRIVATE_IP>:/tmp/webapp
+                    ubuntu@172.31.38.210:/tmp/webapp
 
                     # Deploy to Nginx web root
-                    ssh -o StrictHostKeyChecking=no ubuntu@<TARGET_PRIVATE_IP> \
+                    ssh -o StrictHostKeyChecking=no ubuntu@172.31.38.210 \
                     "sudo rm -rf /var/www/html/* && \
                      sudo cp -r /tmp/webapp/* /var/www/html/"
                     '''
